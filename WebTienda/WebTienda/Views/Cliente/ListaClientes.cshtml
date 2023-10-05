@@ -1,0 +1,325 @@
+﻿
+@{
+    ViewBag.Title = "ListaClientes";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<h2>ListaClientes</h2>
+
+
+@*crear tabla y boton para agregar*@
+<div class="form-inline">
+    <label>Buscar:</label><input type="text" class="form-control" placeholder="Id o nombre" id="txtIdNombre" />
+    <button style="margin-left:93%;" class="btn btn-success" id="btnNuevoCliente">Nuevo</button>
+</div>
+<br />
+<table class="table table-responsive table-bordered table-striped table-dark">
+    <thead>
+        <tr style="text-align:center;">
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Colonia</th>
+            <th scope="col">Ciudad</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Activo</th>
+            <th scope="col">Editar / Borrar</th>
+        </tr>
+    </thead>
+    <tbody id="tablaClientes">
+    </tbody>
+</table>
+
+<!-- Modal para guardar -->
+<div class="modal fade" id="RegistrarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="GuardarCliente">Registrar Nuevo cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>ID<input type="text" class="form-control" id="txtIdGuardar" /></label>
+                <label>Nombre<input type="text" class="form-control" id="txtNombreGuardar" /></label>
+                <label>Email<input type="text" class="form-control" id="txtEmailGuardar" /></label>
+                <label>Direccion<input type="text" class="form-control" id="txtDireccionGuardar" /></label>
+                <label>Colonia<input type="text" class="form-control" id="txtColoniaGuardar" /></label>
+                <label>Ciudad<input type="text" class="form-control" id="txtCiudadGuardar" /></label>
+                <label>Telefono<input type="text" class="form-control" id="txtTelefonoGuardar" /></label>
+                <label>Contraseña<input type="text" class="form-control" id="txtContraseñaGuardar" /></label>
+                <label>Activo<input type="text" class="form-control" id="txtActivoGuardar" /></label>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para editar -->
+<div class="modal fade" id="EditarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditarCliente">Editar Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <label>ID</label><input type="text" class="form-control" id="txtIdEditar" />
+                <label>Nombre</label> <input type="text" class="form-control" id="txtNombreEditar" />
+                <label>Email</label><input type="text" class="form-control" id="txtEmailEditar" />
+                <label>Direccion</label> <input type="text" class="form-control" id="txtDireccionEditar" />
+                <label>Colonia</label><input type="text" class="form-control" id="txtColoniaEditar" />
+                <label>Ciudad</label><input type="text" class="form-control" id="txtCiudadEditar" />
+                <label>Telefono</label><input type="text" class="form-control" id="txtTelefonoEditar" />
+                <label>Contraseña</label><input type="text" class="form-control" id="txtContraseñaEditar" />
+                <label>Activo</label><input type="text" class="form-control" id="txtActivoEditar" />
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnEditar" onclick="Cargar(this.id)">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para borrar-->
+<div class="modal fade" id="BorrarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="BorrarCliente">Borrar Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Realmente quisiera borrar el cliente?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button id="btnBorrar" type="button" class="btn btn-primary">Borrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        LlenarTabla(); //agrego mi funcion para llenar tabla de inicio
+
+        $("#btnNuevoCliente").click(function () // funcion para mandar a llamar un formulario modal guardar
+        {
+            $("#RegistrarCliente").modal("show");
+        });
+
+
+        $("#btnEditar").click(function () // funcion para mandar a llamar un formulario modal editar
+        {
+            $("#EditarCliente").modal("show");
+        });
+
+        $("#btnBorrar").click(function () // funcion para mandar a llamar un formulario modal borrar
+        {
+            $("#BorrarCliente").modal("show");
+        });
+
+        $("#btnEditar").click(Editar);
+        $("#txtIdNombre").keypress(KeyPressEnter);
+    });
+
+    //funcion para borrar cliente
+    function ModalBorrar(id) {
+        $("#BorrarCliente").modal("show");
+        $("#btnBorrar").click(function () {
+            var param =
+            {
+                Id: id
+            };
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "/Cliente/BorrarCliente",
+                    data: param,
+                    success: function (r, s, j) {
+                        if (r.startsWith("Ok")) {
+                            LlenarTabla();
+                            $('#BorrarCliente').modal('hide');
+                            alert("Se Ha Borrado Correctamente");
+                        }
+                        else {
+                            alert(r);
+                        }
+                    },
+                    dataType: "Text"
+                });
+        });
+    }
+
+    //funcion para llenar tabla
+    function LlenarTabla() {
+        var idNombre = $("#txtIdNombre").val();
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', '/Cliente/ListaTablaClientes?IdNombre=' + idNombre, true);
+        //xhttp.open('GET', '/Busqueda/ListaAlumno?Matricula=' + matricula, true);
+        xhttp.send();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let datos = JSON.parse(this.responseText);
+                let tablaClientes = document.querySelector('#tablaClientes');
+                tablaClientes.innerHTML = '';
+                for (let item of datos) {
+                    tablaClientes.innerHTML +=
+                        `
+                            <tr style="text-align:center;">
+                                <td>${item.Id}</td>
+                                <td>${item.Nombre}</td>
+                                <td>${item.Email}</td>
+                                <td>${item.Direccion}</td>
+                                <td>${item.Colonia}</td>
+                                <td>${item.Ciudad}</td>
+                                <td>${item.Telefono}</td>
+                                <td>${item.Contraseña}</td>
+                                <td>${item.Activo}</td>
+
+                                <td><button class="btn btn-info" id="${item.Id}" onclick="Cargar(this.id)">Editar</button>|<button id="${item.Id}" onclick="ModalBorrar(this.id)" class="btn btn-danger">Borrar</button></td>
+                            </tr>
+                        `
+                }
+            }
+        }
+    }
+
+    //funcion para guardar cliente
+    function Guardar() {
+        var params =
+        {
+            Id: $("#txtIdGuardar").val(),
+            Nombre: $("#txtNombreGuardar").val(),
+            Email: $("#txtEmailGuardar").val(),
+            Direccion: $("#txtDireccionGuardar").val(),
+            Colonia: $("#txtColoniaGuardar").val(),
+            Ciudad: $("#txtCiudadGuardar").val(),
+            Telefono: $("#txtTelefonoGuardar").val(),
+            Contraseña: $("#txtContraseñaGuardar").val(),
+            Activo: $("#txtActivoGuardar").val()
+            //FechaNacimiento: ($("#cbDiaGuardar").val() + "/" + $("#cbMesGuardar").val() + "/" + $("#txtAñoGuardar").val())
+        };
+        $.ajax
+            ({
+                type: "POST",
+                url: "/Cliente/GuardarCliente",
+                data: params,
+                success: function (r, s, j) {
+                    if (r.startsWith("Ok")) {
+                        LlenarTabla();
+                        $('#RegistrarCliente').modal('hide');
+                        alert("Se Guardo Correctamente");
+                    }
+                    else {
+
+                        alert(r);
+                    }
+                },
+                dataType: "Text"
+            });
+    }
+
+
+
+    //funcion para cargar en formulario para hacer editado
+    function Cargar(id) {
+        var param =
+        {
+            Id: id
+        };
+        $.ajax
+            ({
+                type: "POST",
+                url: "/Cliente/CargarCliente",
+                data: param,
+                success: function (r, s, j) {
+                    $("#EditarCliente").modal("show");
+                    $("#txtIdEditar").val(r[0].Id);
+                    $("#txtNombreEditar").val(r[0].Nombre);
+                    $("#txtEmailEditar").val(r[0].Email);
+                    $("#txtDireccionEditar").val(r[0].Direccion);
+                    $("#txtColoniaEditar").val(r[0].Colonia);
+                    $("#txtCiudadEditar").val(r[0].Ciudad);
+                    $("#txtTelefonoEditar").val(r[0].Telefono);
+                    $("#txtContraseñaEditar").val(r[0].Contraseña);
+                    $("#txtActivoEditar").val(r[0].Activo);
+
+
+
+
+                    //var FechaNacimiento = r[0].FechaNacimiento.split('/');
+                    //$("#cbDiaEditar").val(FechaNacimiento[0]);
+                    //$("#cbMesEditar").val(FechaNacimiento[1].charAt(0).toUpperCase() + FechaNacimiento[1].slice(1));
+                    //$("#txtAñoEditar").val(FechaNacimiento[2]);
+
+                },
+                dataType: "Json"
+            });
+    }
+
+    //funcion para editar cliente
+    function Editar() {
+        var params =
+        {
+            Id: $("#txtIdEditar").val(),
+            Nombre: $("#txtNombreEditar").val(),
+            Email: $("#txtEmailEditar").val(),
+            Direccion: $("#txtDireccionEditar").val(),
+            Colonia: $("#txtColoniaEditar").val(),
+            Ciudad: $("#txtCiudadEditar").val(),
+            Telefono: $("#txtTelefonoEditar").val(),
+            Contraseña: $("#txtContraseñaEditar").val(),
+            Activo: $("#txtActivoEditar").val(),
+
+
+            //FechaNacimiento: ($("#cbDiaEditar").val() + "/" + $("#cbMesEditar").val() + "/" + $("#txtAñoEditar").val())
+        };
+        $.ajax
+            ({
+
+                type: "POST",
+                url: "/Cliente/EditarCliente",
+                data: params,
+                success: function (r, s, j) {
+                    if (r.startsWith("Ok")) {
+                        LlenarTabla();
+                        $('#EditarCliente').modal('hide');
+                        alert("Se Edito Correctamente");
+
+                    }
+                    else {
+                        alert(r);
+                    }
+                },
+                dataType: "Text"
+            });
+    }
+
+    //funcion para buscar por id o nombre
+    function KeyPressEnter(tecla) {
+        if (tecla.which == 13) {
+            LlenarTabla();
+        }
+    }
+
+
+</script>

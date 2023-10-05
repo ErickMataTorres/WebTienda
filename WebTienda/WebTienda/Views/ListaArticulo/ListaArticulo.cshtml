@@ -1,0 +1,317 @@
+﻿
+@{
+    ViewBag.Title = "ListaArticulo";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<h2>Lista Articulo</h2>
+
+@*crear tabla y boton para agregar Articulo*@
+
+<div class="form-inline">
+    <label>Buscar Articulo:</label><input type="text" class="form-control" placeholder="Id o Titulo" id="txtIdNombre" />
+    <button style="margin-left:82%;" class="btn  btn-lg  btn-success " id="btnNuevoArticulo">Agregar Articulo</button>
+</div>
+
+@*fin crear tabla y boton para agregar Articulo*@
+
+<div id="result"></div>
+
+
+<!----primer carta-->
+<form id="LlenarCard" class="row row-cols-1 row-cols-md-3" action="/" method="post">
+
+
+
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-footer">
+                <button id="btnapartar" href="#RegistrarArticulo" class="btn btn-primary">Apartar</button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</form>
+
+<!----fin primer carta-->
+<!----segunda carta-->
+@*
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1JPJg-T5naIP0zMRHW2ZBD7Yt__ikshUcANJVfUMEcGS9KQ_7&s" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">SACA LO FASHION QUE LLEVAS DENTRO DE TI</p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+    <!----fin segunda carta-->
+    <!----tercera carta-->
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9MJWy1HQnuBKJdwBbgpgZakGhJGsvZRx7nDgEw6UnndlTS3yY&s" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">TU ERES HERMOSA CON NUESTRA PRENDA SENTIRAS QUE ERES UNA DIVA </p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+
+    <!----fin tercera carta-->
+    <!----cuarta carta-->
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="https://pegalinas.com/wp-content/uploads/2019/04/pegalinas-color-ropa-4-200x200.jpg" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">SIENTE ORGULLOSA DE LO QUE LLEVAS </p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+    <!----fin cuarta carta-->
+    <!----quinta carta-->
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwkLubtqqQ4tuVdn8tkQIlit3IEpWPAhjqJPL4eZQx59K4d7Ldxw&s" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">SAL A DIVERTIRTE  </p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+    <!----fin quinta carta-->
+    <!----sexta carta-->
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="http://www.cihantekin.com/image/cache/data/category_9/mujer-ropa-falda-de-guingan-con-boton-lateral-blanco-y-negro-casual-rski180712081-yc-3825-200x200.jpg" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">ENAMORATE DE LO QUE LLEVAS PUESTO</p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+    <!----fin sexta carta-->
+    <!----septimo carta-->
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="https://www.stampamx.com/image/cache/catalog/Categorias/Ropa-200x200.jpg" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">ENAMORATE DE LO QUE LLEVAS PUESTO </p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+    <!----fin septimo carta-->
+    <!----octavo carta-->
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="https://i.pinimg.com/236x/fd/cd/7e/fdcd7e2e42900264335fb982a28a0024.jpg" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">ENAMORATE DE LO QUE LLEVAS PUESTO </p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+    <!----fin octavo carta-->
+    <!----noveno carta-->
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="https://www.dhresource.com/200x200s/f2-albu-g9-M00-A4-81-rBVaWF1T1eWAX5jrABEStoFM5rs915.jpg/women-rainbow-gradient-hoodie-autumn-long.jpg" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">ENAMORATE DE LO QUE LLEVAS PUESTO </p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+    <!----fin noveno carta-->
+    <!----decima carta-->
+    <div class="col mb-4">
+        <div class="card">
+            <img Width="200" src="https://www.colchonestiendas.com/wp-content/uploads/2019/11/%E2%96%B7-Conjuntos-bebe-ni%C3%B1o-K-youth-Ropa-Beb%C3%A9-Reci%C3%A9n-Nacido-Ropa-200x200.jpg" class="img-responsive" alt="Responsive image">
+            <div class="card-body">
+                <h5 class="card-title">Descripcion</h5>
+                <p class="card-text">ENAMORATE DE LO QUE LLEVAS PUESTO </p>
+                <p class="card-text"><small class="text-muted">Precio: $200.00</small></p>
+                <a href="#" class="btn btn-primary">Apartar</a>
+            </div>
+        </div>
+    </div>
+    <!----fin decima carta-->*@
+
+<!-- Modal para guardar articulo -->
+<div class="modal fade" id="RegistrarArticulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="GuardarArticulo">Registrar Nuevo Articulo</h5>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-title">
+
+                <label class="col-lg-4 control-label">
+                    ID<input type="text" class="form-control" id="txtIdGuardar" />
+                </label>
+
+                <label class="col-lg-4 control-label">
+                    Nombre<input type="text" class="form-control-file" id="txtNombreGuardar" />
+                    @*<input type="file" class="form-control-file" id="exampleFormControlFile1">*@
+                </label>
+
+                <label class="col-lg-4 control-label">
+                    Precio<input type="text" class="form-control" id="txtPrecioGuardar" />
+                </label>
+
+                <label class="col-lg-4 control-label">
+                    Descripcion<input type="text" class="form-control" id="txtDescripcionGuardar" />
+                </label>
+
+                    <form method="post" id="register-form" enctype="multipart/form-data">
+
+                        <label class="col-lg-4 control-label">
+                            Imagen<input type="file" accept="image/*" class="form-control-file" id="inputFile">
+                        </label>
+                    </form>
+                
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary " data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        LlenarTabla(); //agrego mi funcion para llenar tabla de inicio
+
+        $("#btnNuevoArticulo").click(function () // funcion para mandar a llamar un formulario modal guardar
+        {
+            $("#RegistrarArticulo").modal("show");
+        });
+
+        $("#btnapartar").click(function () // funcion para mandar a llamar un formulario modal guardar
+        {
+            $("#RegistrarArticulo").modal("show");
+
+        });
+
+        $("#acti").click(function () // funcion para mandar a llamar un formulario modal guardar
+        {
+            $("#RegistrarArticulo").modal("show");
+        });
+    });
+
+
+
+    //funcion para guardar cliente
+    function Guardar() {
+            
+        var params =
+        {
+            Id: $("#txtIdGuardar").val(),
+            Nombre: $("#txtNombreGuardar").val(),
+            Precio: $("#txtPrecioGuardar").val(),
+            Descripcion: $("#txtDescripcionGuardar").val(),
+            Imagen: $("#txtImagenGuardar").val()
+        };
+        $.ajax
+            ({
+                type: "POST",
+                url: "/ListaArticulo/GuardarArticulo",
+                data: params,
+                success: function (r, s, j) {
+                    if (r.startsWith("Ok")) {
+                        LlenarTabla();
+                        $('#RegistrarArticulo').modal('hide');
+                        alert("Se Guardo Correctamente");
+                    }
+                    else {
+
+                        alert(r);
+                    }
+                },
+                dataType: "Text"
+            });
+    }
+
+    //funcion para llenar tabla
+    function LlenarTabla() {
+        var idNombre = $("#txtIdNombre").val();
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', '/ListaArticulo/ListaTablaArticulo?IdNombre=' + idNombre, true);
+        //xhttp.open('GET', '/Cliente/ListaTablaClientes?IdNombre=' + idNombre, true);
+        //xhttp.open('GET', '/Busqueda/ListaAlumno?Matricula=' + matricula, true);
+        xhttp.send();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let datos = JSON.parse(this.responseText);
+                let card = document.querySelector('#LlenarCard');
+                card.innerHTML = '';
+                for (let item of datos) {
+                    card.innerHTML +=
+                        `
+                            <form id="LlenarCard"  class="row row-cols-1 row-cols-md-3" action="/" method="post">
+
+                                      <div class="col mb-4">
+                                          <div class="card">
+                                             <img Width="200" src="${item.Imagen}" class="img-responsive" alt="Card image cap">
+                                                    <div class="card-footer">
+                                                         <p class="card-title">${item.Id}</p>
+                                                         <p class="card-text">${item.Nombre}</p>
+                                                         <p class="card-text">${item.Descripcion}</p>
+                                                    <p class="card-text"><small class="text-muted">Precio: $${item.Precio}</small></p>
+                                     <button id="btnapartar" href="#RegistrarArticulo" class="btn btn-primary">Apartar</button>
+                                                     </div>
+                                           </div>
+                                       </div>
+
+                              </form>
+                            `
+                }
+            }
+        }
+    }
+
+</script>
+
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li id="acti" class="page-item"><a class="RegistrarArticulo" href="#">Anterior</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+    </ul>
+</nav>
+
+
+
